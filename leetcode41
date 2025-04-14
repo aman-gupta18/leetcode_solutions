@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        
+        // Step 1: Clean up the array by converting all non-positive numbers
+        // and numbers larger than n to n+1 (they will never be the answer).
+        for (int i = 0; i < n; i++) {
+            if (nums[i] <= 0 || nums[i] > n) {
+                nums[i] = n + 1;
+            }
+        }
+        
+        // Step 2: Use the values of the array as indices to mark the existence
+        for (int i = 0; i < n; i++) {
+            int num = abs(nums[i]);
+            if (num <= n) {
+                nums[num - 1] = -abs(nums[num - 1]);  // Mark as visited by making it negative
+            }
+        }
+        
+        // Step 3: Find the first index that has a positive value, which represents
+        // the missing positive number.
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                return i + 1;  // Since the array is 0-indexed, we return i+1
+            }
+        }
+        
+        // Step 4: If all numbers from 1 to n are present, return n+1
+        return n + 1;
+    }
+};
