@@ -1,4 +1,6 @@
-## Hi there 👋
+## Hi there 👋 This repository contains my personal solutions to various leetcode problems. I upload solutions from my Leetcode problem solving-sessions to help myself track progress and share insights with others.
+_**These solutions are implemented in c++**_
+
 
 <!--
 **aman-gupta18/aman-gupta18** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
