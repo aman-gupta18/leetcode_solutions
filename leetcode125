@@ -1,0 +1,39 @@
+char toLowercase(char ch) {
+    // Convert uppercase to lowercase
+    if (ch >= 'a' && ch <= 'z') {
+        return ch;
+    } else {
+        char temp = ch - 'A' + 'a';
+        return temp;
+    }
+}
+
+bool checkPalindrome(string s, int n) {
+    int st = 0;
+    int e = n - 1;
+    
+    while (st < e) {  // Compare until pointers cross each other
+        // Skip non-alphabetic characters (spaces, commas, punctuation)
+        if (!isalnum(s[st])) {  
+            st++;  // Move the start pointer forward if the character is not alphanumeric
+        } 
+        else if (!isalnum(s[e])) {
+            e--;  // Move the end pointer backward if the character is not alphanumeric
+        } 
+        // Compare characters after converting to lowercase
+        else if (toLowercase(s[st]) != toLowercase(s[e])) {
+            return false;  // Return false if characters don't match
+        } else {
+            st++;
+            e--;
+        }
+    }
+    return true;  // Return true if the string is a palindrome
+}
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        return checkPalindrome(s, s.size());
+    }
+};
