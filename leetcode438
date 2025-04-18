@@ -1,0 +1,51 @@
+class Solution {
+
+        private:
+    bool checkEqual(int a[26],int b[26]){
+        for(int i=0; i<26; i++){
+            if(a[i]!=b[i]){
+                return 0;
+            }
+        }
+        return 1;
+    }
+public:
+    vector<int> findAnagrams(string s, string p) {
+        //character count array
+        vector<int> ans;
+        int count1[26]={0};
+        for(int i=0; i<p.length(); i++){
+            int index = p[i]-'a';
+            count1[index]++;
+        }
+    // traverse s2 atring in window of size s1 length and compare
+
+    int i=0;
+    int windowSize = p.length();
+    int count2[26]={0};
+
+    // running for first window
+    while(i<windowSize && i<s.length()){
+        int index = s[i]-'a';
+        count2[index]++;
+        i++;
+    }
+    if(checkEqual(count1, count2))
+    ans.push_back(0);
+// aage window process karo
+while(i<s.length()){
+    char newChar = s[i];
+    int index = newChar-'a';
+    count2[index]++;
+
+    char oldChar = s[i-windowSize];
+    index = oldChar - 'a';
+    count2[index]--;
+    i++;
+
+if(checkEqual(count1, count2))
+    ans.push_back(i-windowSize);
+  }  
+    return ans;
+    }  
+};
